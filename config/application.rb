@@ -43,5 +43,14 @@ module RailsApiBoilerplate
                        routing_specs: false,
                        view_specs: false
     end
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+                 headers: :any,
+                 methods: %i[get put post options head]
+      end
+    end
   end
 end
