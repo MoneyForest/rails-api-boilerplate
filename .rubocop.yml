@@ -23,5 +23,13 @@ Rails:
 
 Rails/FilePath:
   Exclude:
+    - 'config/environments/development.rb'
     - 'lib/tasks/dev.rake'
+    - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
