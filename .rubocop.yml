@@ -10,6 +10,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'db/migrate/*'
+    - 'db/schema.rb'
     - 'tmp/**/*'
     - 'Gemfile'
     - 'Gemfile.lock'
@@ -27,6 +28,9 @@ Rails/FilePath:
     - 'lib/tasks/dev.rake'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
