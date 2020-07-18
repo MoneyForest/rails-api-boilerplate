@@ -33,5 +33,15 @@ module RailsApiBoilerplate
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.generators do |g|
+      g.test_framework :rspec,
+                       controller_specs: false,
+                       fixtures: true,
+                       helper_specs: false,
+                       request_specs: false,
+                       routing_specs: false,
+                       view_specs: false
+    end
   end
 end
