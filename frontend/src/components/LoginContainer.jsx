@@ -3,7 +3,7 @@ import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import { TextInput } from './Forms/index';
 
-const MainContainer = (props) => {
+const LoginContainer = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,13 +20,15 @@ const MainContainer = (props) => {
       email: email,
       password: password,
     };
-    console.log(payload);
 
-    axios.post('http://localhost:3001/api/v1/auth/sign_in', payload
+    axios.post('api/v1/auth/sign_in', payload
     ).then(() => {
-      alert('送信が完了しました');
+      alert('ログインが成功しました');
       setEmail('');
       setPassword('');
+      props.signIn();
+    }).catch(() => {
+      alert('ログインに失敗しました');
     });
   };
 
@@ -55,4 +57,4 @@ const MainContainer = (props) => {
   );
 };
 
-export default MainContainer;
+export default LoginContainer;

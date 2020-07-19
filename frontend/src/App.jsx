@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
+
 import './assets/styles/style.css';
-import { MainContainer } from './components/index';
+import { Home } from './pages/index';
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const signIn = useCallback(() => {
+    setIsAuthenticated(true);
+  }, [setIsAuthenticated]);
+
   return (
-    <MainContainer />
+    <div>
+      <h2>{isAuthenticated.toString()}</h2>
+      <Router>
+        <Switch>
+          <Route exact path="/" render={ () => isAuthenticated
+            ? (<Redirect to="/"/>)
+            : (<Home signIn={signIn} />)
+          }/>
+        </Switch>
+      </Router>
+    </div>
   );
 };
 
