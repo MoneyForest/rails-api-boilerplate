@@ -7,6 +7,8 @@ import createStore from './reducks/store/store';
 import * as serviceWorker from './serviceWorker';
 import './assets/styles/reset.css'
 import './assets/styles/style.css'
+import {MuiThemeProvider} from '@material-ui/core/styles';
+import { theme } from './assets/theme'
 import App from './App';
 
 const history = History.createBrowserHistory();
@@ -15,7 +17,9 @@ export const store = createStore(history);
 render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App />
+            <MuiThemeProvider theme={theme}>
+                <App />
+            </MuiThemeProvider>
         </ConnectedRouter>
     </Provider>,
     document.getElementById('root')

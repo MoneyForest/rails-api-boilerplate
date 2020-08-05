@@ -1,8 +1,7 @@
 import React, {useState, useCallback} from 'react';
-import {PrimaryButton, TextInput} from "../components/UIkit";
 import {useDispatch} from "react-redux";
-import {signIn} from "../reducks/users/operations";
 import {push} from "connected-react-router"
+import { PrimaryButton } from '../components/UIkits'
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -21,23 +20,15 @@ const Home = () => {
     
     return (
         <div className="c-section-container">
-            {/*<h2 className="u-text-center u-text__headline">ログイン</h2>*/}
-            {/*<div className="module-spacer--medium" />*/}
-            {/*<TextInput*/}
-            {/*    fullWidth={true} label={"メールアドレス"} multiline={false} required={true}*/}
-            {/*    rows={1} value={email} type={"email"} onChange={inputEmail}*/}
-            {/*/>*/}
-            {/*<TextInput*/}
-            {/*    fullWidth={true} label={"パスワード"} multiline={false} required={true}*/}
-            {/*    rows={1} value={password} type={"password"} onChange={inputPassword}*/}
-            {/*/>*/}
-            {/*<div className="module-spacer--medium" />*/}
-            {/*<div className="center">*/}
-            {/*    <PrimaryButton label={"ログイン"} onClick={() => dispatch(signIn(email, password))} />*/}
-            {/*    <div className="module-spacer--small" />*/}
-            {/*    <p className="u-text-small" onClick={() => dispatch(push('/signin/reset'))}>パスワードを忘れた方はこちら</p>*/}
-            {/*    <p className="u-text-small" onClick={() => dispatch(push('/signup'))}>アカウント登録がまだですか？</p>*/}
-            {/*</div>*/}
+            <h1>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</h1>
+            <br />
+            <h3>sutra を使うリモートチームは、プロジェクトを整理し、変化する優先順位を管理し、仕事を処理できます。</h3>
+            <br />
+            <br />
+            <br />
+            <div className='center'>
+                <PrimaryButton label={"無料で試してみる"} onClick={() => dispatch(push('/hoge'))} />
+            </div>
         </div>
     );
 };
