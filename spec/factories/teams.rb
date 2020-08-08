@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :team do
-    name { "MyString" }
+    name { 'MyString' }
     creator_id { 1 }
   end
 end

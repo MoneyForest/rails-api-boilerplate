@@ -1,22 +1,16 @@
-import React, {useState, useCallback} from 'react';
-import {useDispatch} from "react-redux";
-import {push} from "connected-react-router"
-import { PrimaryButton } from '../components/UIkits'
+    import React, {useState, useCallback} from 'react';
+import { PrimaryButton, FormDialog } from '../components/UIkits'
 
 const Home = () => {
-    const dispatch = useDispatch();
-    
-    
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    
-    const inputEmail = useCallback((e) => {
-        setEmail(e.target.value)
-    },[]);
-    
-    const inputPassword = useCallback((e) => {
-        setPassword(e.target.value)
-    },[]);
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = useCallback(() => {
+        setOpen(true);
+    }, [setOpen]);
+
+    const handleClose = useCallback(() => {
+        setOpen(false);
+    }, [setOpen]);
     
     return (
         <div className="c-section-container">
@@ -27,8 +21,9 @@ const Home = () => {
             <br />
             <br />
             <div className='center'>
-                <PrimaryButton label={"無料で試してみる"} onClick={() => dispatch(push('/hoge'))} />
+                <PrimaryButton label={"無料で試してみる"} onClick={ handleOpen } />
             </div>
+            <FormDialog open={open} handleOpen={handleOpen} handleClose={handleClose} />
         </div>
     );
 };
