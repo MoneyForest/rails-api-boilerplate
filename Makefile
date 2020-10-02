@@ -1,3 +1,9 @@
+.PHONY: ci/static-code-analysis
+ci/static-code-analysis:
+	bundle exec rubocop . &&  \
+		bundle exec brakeman -A -w3 -q . && \
+			bundle exec rails_best_practices .
+
 .PHONY: docker/run-swagger-editor
 docker/run-swagger-editor:
 	cd docs/api/ && \
