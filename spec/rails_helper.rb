@@ -1,3 +1,4 @@
+require 'rake'
 require 'spec_helper'
 
 ENV['RAILS_ENV'] ||= 'test'
@@ -7,13 +8,18 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
-ActiveRecord::Migration.maintain_test_schema!
+# ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.include FactoryBot::Syntax::Methods
   config.include RSpec::RequestDescriber, type: :request
+
+  config.before(:suite) do
+    Rails.application.load_tasks
+    Rake.application['ridgepole:apply'].invoke
+  end
 
   config.before(:all) do
     FactoryBot.reload

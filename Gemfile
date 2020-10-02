@@ -29,6 +29,8 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'devise_token_auth'
 
+gem 'ridgepole'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
