@@ -1,0 +1,39 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: API
+tags:
+  - name: Repository
+paths:
+  # paths オブジェクト
+  /users:
+    # path item オブジェクト
+    get: # GET
+      # Operationオブジェクト
+      tags:
+        - users
+      summary: Get all users.
+      description: Returns an array of User model
+      parameters: []
+      responses: # レスポンス定義
+        '200': # HTTP status
+          description: A JSON array of User model
+          content:
+            application/json: # レスポンスの形式指定
+              schema:
+                type: array
+                items:
+                  type: object # 型
+                  required: # 必須フィールド
+                    - id
+                  properties:
+                    id: # プロパティ名
+                      type: integer # 型
+                      format: int64 # フォーマット(int32, int64等)
+                    name:
+                      type: string
+                example: # サンプルデータ
+                  - id: 1
+                    name: John Doe
+                  - id: 2
+                    name: Jane Doe
