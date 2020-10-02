@@ -1,24 +1,56 @@
-# README
+## rails-api-boilerplate
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+this repo is boilerplate for quick API development in Rails API mode.
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+- rbenv installed on Homebrewrbenv installed on Homebrew
 
-* System dependencies
+#### Confirm installation of ruby 2.7.1
 
-* Configuration
+```
+$ rbenv install --list
+```
 
-* Database creation
+- if 2.7.1 is not included, update ruby-build
 
-* Database initialization
+```
+$ brew update
+$ brew upgrade ruby-build
+```
 
-* How to run the test suite
+#### Installation of ruby 2.7.1
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ rbenv install 2.7.1
+$ rbenv local 2.7.1
+```
 
-* Deployment instructions
+#### Installation of bundler and gem
 
-* ...
+```
+$ rbenv exec gem install bundler
+$ bundle install
+```
+
+#### Create DB
+
+```
+$ bundle exec rails db:create
+```
+
+#### Migrate DB
+
+- Start MySQL locally before
+
+```
+$ make rake/ridgepole-apply
+```
+
+## How to edit API spec
+
+```
+$ make docker/run-swagger-editor
+```
+- Access to http://localhost:8080/ and begin editing
+- When you are done, go to > File/Save as YAML and overwrite the current `openapi.yaml` file
