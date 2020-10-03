@@ -4,26 +4,21 @@
   def index
     users_team = current_user.users_team
     @teams = Team.where(id: users_team.pluck(:team_id))
-    render json: @teams
   end
 
   def show
-    render json: @team
   end
 
   def create
-    team = Team.create!(team_params.merge(creator_id: current_user.id))
-    render json: team
+    @team = Team.create!(team_params.merge(creator_id: current_user.id))
   end
 
   def update
     @team.update!(name: update_params[:name])
-    render json: @team
   end
 
   def destroy
     @team.destroy!
-    render json: @team
   end
 
   private
