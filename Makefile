@@ -14,6 +14,10 @@ docker/stop-swagger-editor:
 	cd docs/api/ && \
 		docker-compose down
 
+.PHONY: rails/db-seed
+rails/db-seed:
+	bundle exec rails db:seed
+
 .PHONY: rake/ridgepole-apply
 rake/ridgepole-apply:
 	bundle exec rake ridgepole:apply
