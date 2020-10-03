@@ -21,6 +21,9 @@ Bundler.require(*Rails.groups)
 
 module RailsApiBoilerplate
   class Application < Rails::Application
+    config.active_record.default_timezone = :local
+    config.time_zone = 'Tokyo'
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
