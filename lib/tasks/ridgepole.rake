@@ -8,7 +8,7 @@ namespace :ridgepole do
 
   desc 'Export database schema'
   task export: :environment do
-    ridgepole('--export')
+    ridgepole('--export -o db/Schemafile')
   end
 
   private
