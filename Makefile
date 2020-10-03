@@ -18,6 +18,10 @@ docker/stop-swagger-editor:
 rails/db-seed:
 	bundle exec rails db:seed
 
+.PHONY: rails/routes
+rails/routes:
+	bundle exec rails routes
+
 .PHONY: rake/ridgepole-apply
 rake/ridgepole-apply:
 	bundle exec rake ridgepole:apply
