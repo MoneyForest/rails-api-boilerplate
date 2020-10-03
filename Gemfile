@@ -26,7 +26,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 
 gem 'devise'
-gem 'devise_token_auth'
+gem 'jwt'
 
 gem 'ridgepole'
 
@@ -45,6 +45,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec'
+  gem 'rubocop-performance', require: false
   gem 'simplecov', require: false
 end
 
