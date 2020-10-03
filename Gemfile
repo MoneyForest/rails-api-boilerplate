@@ -40,7 +40,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rails_best_practices'
   gem 'rspec'
-  gem 'rspec-rails', '~> 3.6.0'
+  gem 'rspec-rails', '~> 4.0.1'
   gem 'rspec-request_describer'
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
