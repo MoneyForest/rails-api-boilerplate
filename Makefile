@@ -1,6 +1,6 @@
 .PHONY: ci/static-code-analysis
 ci/static-code-analysis:
-	bundle exec rubocop . &&  \
+	bundle exec rubocop -a . &&  \
 		bundle exec brakeman -A -w3 -q . && \
 			bundle exec rails_best_practices .
 
