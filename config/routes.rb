@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :projects, only: %i[index show create update destroy]
+      resources :tasks, only: %i[index show create update destroy]
       resources :teams, only: %i[index show create update destroy]
       resources :healthz, only: %(index)
     end
