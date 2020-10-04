@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Authentication', type: :request do
   describe 'POST /auth_user' do
-    let(:email) { Faker::Internet.email }
-    let(:password) { Faker::Internet.password }
-    let(:user) { create(:user, email: email, password: password) }
+    include_context 'a user defined'
 
     context 'valid request' do
       let(:params) do
