@@ -18,8 +18,12 @@ docker/stop-swagger-editor:
 rails/db-apply:
 	bundle exec rake ridgepole:apply
 
-.PHONY: rake/db-export
-rake/db-export:
+.PHONY: rails/db-erd-generate
+rails/db-erd-generate:
+	bundle exec erd --filename=docs/db/erd
+
+.PHONY: rails/db-export
+rails/db-export:
 	bundle exec rake ridgepole:export
 
 .PHONY: rails/db-reset
@@ -32,6 +36,10 @@ rails/db-reset:
 rails/db-seed:
 	make rails/db-reset && \
 		bundle exec rails db:seed
+
+.PHONY: rails/gem-sort
+rails/gem-sort:
+	bundle exec ordinare
 
 .PHONY: rails/routes
 rails/routes:
