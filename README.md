@@ -1,17 +1,23 @@
 ## rails-api-boilerplate
 
-- this repo is boilerplate for quick API development in Rails API mode.
+- This repo is sample boilerplate for quick API development in Rails API mode.
+- This sample is backend api server of task management application
 
-## How to install
+---
+
+## How to setup
 
 - rbenv installed on Homebrewrbenv installed on Homebrew
 
-#### Setup env
+### Environment
+
 ```
 export DB_LOCAL_USERNAME=user
 export DB_LOCAL_PASSWORD=password
 export DB_LOCAL_HOST=localhost
 ```
+
+### Application
 
 #### Confirm installation of ruby 2.7.1
 
@@ -40,19 +46,15 @@ $ rbenv exec gem install bundler
 $ bundle install
 ```
 
-#### Create DB
-
-```
-$ bundle exec rails db:create
-```
-
-#### Migrate DB
+### DataBase
 
 - Start MySQL locally before
 
 ```
-$ make rake/ridgepole-apply
+$ make rails/db-setup
 ```
+
+---
 
 ## How to develop
 
@@ -61,13 +63,30 @@ $ make rake/ridgepole-apply
 ```
 $ make docker/run-swagger-editor
 ```
+
 - Access to http://localhost:8080/ and begin editing
 - When you are done, go to > File/Save as YAML and overwrite the current `openapi.yaml` file
 
 ### How to edit DB scheme
+
 - Edit DB schema by SQL ex) ALTER TABLE
-- If DB schema is good, execute 'make rake/ridgepole-export' 
+- If DB schema is good, execute 'make rails/db-export' 
+
 ```
-$ make rake/ridgepole-export
+$ make rails/db-export
 ```
+
 - DB schema is exported to Schemafile and commit it
+- Run generate E-R diagram command after edit DB schema
+
+```
+$ rails/db-erd-generate
+```
+
+### How to edit Gemfile
+
+- Run sort command after edit Gemfile 
+
+```
+$ make rails/gem-sorter
+```

@@ -30,12 +30,16 @@ rails/db-export:
 rails/db-reset:
 	bundle exec rails db:drop && \
 		bundle exec rails db:create && \
-			make rake/ridgepole-apply
+			make rails/db-apply
 
 .PHONY: rails/db-seed
 rails/db-seed:
 	make rails/db-reset && \
 		bundle exec rails db:seed
+
+.PHONY: rails/db-setup
+rails/db-setup:
+	make rails/db-seed
 
 .PHONY: rails/gem-sorter
 rails/gem-sorter:
