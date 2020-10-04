@@ -30,6 +30,10 @@
 /docs/test/*
 !/docs/test/.keep
 
+# docker
+/docker/db/mysql_data
+!/docker/db/mysql_data/.keep
+
 /vendor
 
 .idea
