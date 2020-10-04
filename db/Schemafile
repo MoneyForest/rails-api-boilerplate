@@ -20,8 +20,8 @@ create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :
   t.datetime "created_at", precision: 6, null: false
   t.datetime "updated_at", precision: 6, null: false
   t.index ["assigned_user_id"], name: "index_tasks_on_assigned_user_id"
-  t.index ["created_user_id"], name: "index_tasks_on_creator_id"
-  t.index ["parent_task_id"], name: "index_tasks_on_parent_id"
+  t.index ["created_user_id"], name: "index_tasks_on_created_user_id"
+  t.index ["parent_task_id"], name: "index_tasks_on_parent_task_id"
 end
 
 create_table "tasks_projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -36,7 +36,7 @@ create_table "teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :
   t.integer "created_user_id"
   t.datetime "created_at", precision: 6, null: false
   t.datetime "updated_at", precision: 6, null: false
-  t.index ["created_user_id"], name: "index_teams_on_creator_id"
+  t.index ["created_user_id"], name: "index_teams_on_created_user_id"
 end
 
 create_table "teams_projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
