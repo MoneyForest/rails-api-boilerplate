@@ -4,7 +4,7 @@ RSpec.describe '/api/v1/healthz', type: :request do
   describe 'GET /api/v1/healthz' do
     include_context 'a user defined'
 
-    context 'valid request' do
+    context 'when valid request' do
       let(:headers) do
         {
           'Authorization' => 'Basic ' + auth_token
@@ -17,7 +17,7 @@ RSpec.describe '/api/v1/healthz', type: :request do
       end
     end
 
-    context 'invalid request' do
+    context 'when invalid request' do
       let(:headers) do
         {
           'Authorization' => 'Basic ' + auth_token.reverse

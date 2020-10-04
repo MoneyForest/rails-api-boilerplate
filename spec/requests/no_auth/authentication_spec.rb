@@ -4,7 +4,7 @@ RSpec.describe '/auth_user', type: :request do
   describe 'POST /auth_user' do
     include_context 'a user defined'
 
-    context 'valid request' do
+    context 'when valid request' do
       let(:params) do
         {
           'email' => email,
@@ -18,7 +18,7 @@ RSpec.describe '/auth_user', type: :request do
       end
     end
 
-    context 'invalid request' do
+    context 'when invalid request' do
       let(:params) do
         {
           'email' => email.reverse,
