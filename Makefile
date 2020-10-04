@@ -52,3 +52,7 @@ rails/routes:
 .PHONY: rails/run-server
 rails/run-server:
 	rm -f /tmp/pids/server.pid && bundle exec rails server
+
+.PHONY: rails/run-rspec
+rails/run-rspec:
+	bundle exec rspec
