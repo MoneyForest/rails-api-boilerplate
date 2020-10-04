@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :users_team do
-    user_id { 1 }
-    team_id { 1 }
+    user_id { user.id }
+    team_id { team.id }
   end
 end
