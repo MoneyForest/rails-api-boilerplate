@@ -25,7 +25,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   def create_params
     params.permit(
       :name,
-      :description,
+      :description
     )
   end
 
