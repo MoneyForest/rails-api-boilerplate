@@ -10,10 +10,4 @@ class Api::V1::ApplicationController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound do |e|
     render json: { errors: [e.message] }, status: :not_found
   end
-
-  private
-
-  def forbidden(message)
-    render json: { errors: [message] }, status: :forbidden
-  end
 end
