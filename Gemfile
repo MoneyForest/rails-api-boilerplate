@@ -62,7 +62,7 @@ group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter', require: false
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-matchers', '~> 4.4'
   gem 'timecop'
   gem 'vcr'
   gem 'webmock'
