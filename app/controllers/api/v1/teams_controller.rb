@@ -9,7 +9,7 @@ class Api::V1::TeamsController < Api::V1::ApplicationController
   def show; end
 
   def create
-    @team = Team.create!(team_params.merge(created_user_id: current_user.id))
+    @team = Team.create!(create_params.merge(created_user_id: current_user.id))
   end
 
   def update
@@ -22,7 +22,7 @@ class Api::V1::TeamsController < Api::V1::ApplicationController
 
   private
 
-  def team_params
+  def create_params
     params.permit(
       :name
     )

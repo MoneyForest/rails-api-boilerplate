@@ -9,7 +9,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   def show; end
 
   def create
-    @task = Task.create!(task_params.merge(created_user_id: current_user.id))
+    @task = Task.create!(create_params.merge(created_user_id: current_user.id))
   end
 
   def update
@@ -22,9 +22,15 @@ class Api::V1::TasksController < Api::V1::ApplicationController
 
   private
 
-  def task_params
+  def create_params
     params.permit(
-      :name
+      :name,
+      :description,
+      :description,
+      :deadline_at,
+      :repeats,
+      :parent_task_id,
+      :assigned_user_id
     )
   end
 
