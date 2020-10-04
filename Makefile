@@ -4,15 +4,27 @@ ci/static-code-analysis:
 		bundle exec brakeman -A -w3 -q . && \
 			bundle exec rails_best_practices .
 
+.PHONY: docker/db-setup
+docker/db-setup:
+	docker-compose run app make rails/db-setup
+
 .PHONY: docker/run-swagger-editor
 docker/run-swagger-editor:
 	cd docs/api/ && \
 		docker-compose up -d swagger-editor
 
+.PHONY: docker/run-app
+docker/run-app:
+	docker-compose up -d
+
 .PHONY: docker/stop-swagger-editor
 docker/stop-swagger-editor:
 	cd docs/api/ && \
 		docker-compose down
+
+.PHONY: docker/stop-app
+docker/stop-app:
+	docker-compose down
 
 .PHONY: rails/db-apply
 rails/db-apply:

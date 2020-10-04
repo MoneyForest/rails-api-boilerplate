@@ -1,35 +1,31 @@
-FROM ruby:2.7.1
+FROM ruby:2.7.1-alpine
 
 RUN mkdir -p /usr/src/rails-api-boilerplate
 WORKDIR /usr/src/rails-api-boilerplate
 
-# https://yarnpkg.com/lang/en/docs/install/#debian-stable
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-  apt-get update -qq && \
-  apt-get install -y locales && \
-  apt-get install -y vim && \
-  apt-get install -y nodejs && \
-  apt-get install -y yarn
+RUN apk add --update \
+  build-base \
+  libxml2-dev \
+  libxslt-dev \
+  mysql-dev \
+  && rm -rf /var/cache/apk/*
 
-RUN echo "ja_JP.UTF-8 UTF-8" > /etc/locale.gen && \
-  locale-gen ja_JP.UTF-8 && \
-  /usr/sbin/update-locale LANG=ja_JP.UTF-8
-ENV LC_ALL ja_JP.UTF-8
+RUN apk --update add less
 
-ENV APP_PATH=/app
-RUN mkdir $APP_PATH
-WORKDIR $APP_PATH
-COPY Gemfile "${APP_PATH}/Gemfile"
-COPY Gemfile.lock "${APP_PATH}/Gemfile.lock"
-RUN gem install bundler
-COPY . /app
+RUN apk add bash build-base nodejs postgresql-dev tzdata
 
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+COPY . /usr/src/rails-api-boilerplate/
+
+# RUN bundle config disable_platform_warnings true
+
+RUN bundle config build.nokogiri --use-system-libraries
+
+RUN bundle install
+
+ENV RAILS_HOST=0.0.0.0
+ENV RAILS_PORT=8080
+
 EXPOSE 8080
 
 # Start the main process
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "s", "-p", "8080", "-b", "0.0.0.0"]
