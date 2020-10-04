@@ -7,7 +7,7 @@ RSpec.describe '/healthz', type: :request do
     context 'valid request' do
       let(:headers) do
         {
-            'Authorization' => 'Basic ' + auth_token
+          'Authorization' => 'Basic ' + auth_token
         }
       end
 
@@ -20,7 +20,7 @@ RSpec.describe '/healthz', type: :request do
     context 'invalid request' do
       let(:headers) do
         {
-            'Authorization' => 'Basic ' + auth_token.reverse
+          'Authorization' => 'Basic ' + auth_token.reverse
         }
       end
 
