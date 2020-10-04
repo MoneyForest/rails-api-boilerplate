@@ -1,0 +1,28 @@
+                   Prefix Verb   URI Pattern                                                                              Controller#Action
+                auth_user POST   /auth_user(.:format)                                                                     no_auth/authentication#authenticate_user
+            healthz_index GET    /healthz(.:format)                                                                       healthz#index
+          api_v1_projects GET    /api/v1/projects(.:format)                                                               api/v1/projects#index
+                          POST   /api/v1/projects(.:format)                                                               api/v1/projects#create
+           api_v1_project GET    /api/v1/projects/:id(.:format)                                                           api/v1/projects#show
+                          PATCH  /api/v1/projects/:id(.:format)                                                           api/v1/projects#update
+                          PUT    /api/v1/projects/:id(.:format)                                                           api/v1/projects#update
+                          DELETE /api/v1/projects/:id(.:format)                                                           api/v1/projects#destroy
+             api_v1_tasks GET    /api/v1/tasks(.:format)                                                                  api/v1/tasks#index
+                          POST   /api/v1/tasks(.:format)                                                                  api/v1/tasks#create
+              api_v1_task GET    /api/v1/tasks/:id(.:format)                                                              api/v1/tasks#show
+                          PATCH  /api/v1/tasks/:id(.:format)                                                              api/v1/tasks#update
+                          PUT    /api/v1/tasks/:id(.:format)                                                              api/v1/tasks#update
+                          DELETE /api/v1/tasks/:id(.:format)                                                              api/v1/tasks#destroy
+             api_v1_teams GET    /api/v1/teams(.:format)                                                                  api/v1/teams#index
+                          POST   /api/v1/teams(.:format)                                                                  api/v1/teams#create
+              api_v1_team GET    /api/v1/teams/:id(.:format)                                                              api/v1/teams#show
+                          PATCH  /api/v1/teams/:id(.:format)                                                              api/v1/teams#update
+                          PUT    /api/v1/teams/:id(.:format)                                                              api/v1/teams#update
+                          DELETE /api/v1/teams/:id(.:format)                                                              api/v1/teams#destroy
+     api_v1_healthz_index GET    /api/v1/healthz(.:format)                                                                api/v1/healthz#index
+    no_auth_healthz_index GET    /no_auth/healthz(.:format)                                                               no_auth/healthz#index
+       rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create

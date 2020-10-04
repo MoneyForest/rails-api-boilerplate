@@ -47,7 +47,9 @@ rails/gem-sorter:
 
 .PHONY: rails/routes
 rails/routes:
-	bundle exec rails routes
+	rm -rf docs/routes/routes.txt && \
+		bundle exec rails routes > docs/routes/routes.txt && \
+			bundle exec rails routes
 
 .PHONY: rails/run-server
 rails/run-server:
