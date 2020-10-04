@@ -37,8 +37,8 @@ rails/db-seed:
 	make rails/db-reset && \
 		bundle exec rails db:seed
 
-.PHONY: rails/gem-sort
-rails/gem-sort:
+.PHONY: rails/gem-sorter
+rails/gem-sorter:
 	bundle exec ordinare
 
 .PHONY: rails/routes
