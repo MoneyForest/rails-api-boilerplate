@@ -1,4 +1,4 @@
-RSpec.shared_context 'a user defined' do
+RSpec.shared_context 'with a defined user' do
   before do
     user
     auth_token

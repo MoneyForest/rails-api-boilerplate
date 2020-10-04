@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '/api/v1/healthz', type: :request do
   describe 'GET /api/v1/healthz' do
-    include_context 'a user defined'
+    include_context 'with a defined user'
 
     context 'when valid request' do
       let(:headers) do

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '/auth_user', type: :request do
   describe 'POST /auth_user' do
-    include_context 'a user defined'
+    include_context 'with a defined user'
 
     context 'when valid request' do
       let(:params) do
