@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user do
-    email { Faker::Internet.safe_email }
-    password { 'password' }
-    password_confirmation { 'password' }
+    email { email }
+    password { password }
+    password_confirmation { password }
 
     trait :with_a_project do
       after(:create) do |user|
