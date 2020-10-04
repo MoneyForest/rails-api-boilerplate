@@ -1,5 +1,5 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
-  before_action :set_task, only: %i[show update edit destroy]
+  before_action :set_task, only: %i[show update destroy]
 
   def index
     users_task = current_user.users_task

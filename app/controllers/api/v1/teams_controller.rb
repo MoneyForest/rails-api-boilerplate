@@ -1,5 +1,5 @@
 class Api::V1::TeamsController < Api::V1::ApplicationController
-  before_action :set_team, only: %i[show update edit destroy]
+  before_action :set_team, only: %i[show update destroy]
 
   def index
     users_team = current_user.users_team

@@ -1,5 +1,5 @@
 class Api::V1::ProjectsController < Api::V1::ApplicationController
-  before_action :set_project, only: %i[show update edit destroy]
+  before_action :set_project, only: %i[show update destroy]
 
   def index
     users_project = current_user.users_project
