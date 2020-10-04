@@ -13,7 +13,7 @@ class Api::V1::TeamsController < Api::V1::ApplicationController
   end
 
   def update
-    @team.update!(name: update_params[:name])
+    @team.update!(update_params)
   end
 
   def destroy
