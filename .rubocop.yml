@@ -33,6 +33,9 @@ Rails/FilePath:
 RSpec/NamedSubject:
   Enabled: false
 
+RSpec/NestedGroups:
+  Max: 5
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
