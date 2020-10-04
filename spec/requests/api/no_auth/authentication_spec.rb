@@ -9,8 +9,8 @@ RSpec.describe 'Authentication', type: :request do
     context 'valid request' do
       let(:params) do
         {
-          'email' => user.email,
-          'password' => user.password
+          'email' => email,
+          'password' => password
         }
       end
 
