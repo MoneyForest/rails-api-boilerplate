@@ -29,9 +29,6 @@
 # simplecov
 coverage
 
-# E-R diagram
-/docs/db/erd.pdf
-
 /vendor
 
 .idea
