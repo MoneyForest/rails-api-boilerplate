@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :project do
-    name { 'MyString' }
-    description { 'MyText' }
-    team_id { 1 }
+    name {  "#{Faker::Company.name} Project" }
+    description { "This is a project created by FactoryBot" }
     is_archived { false }
   end
 end

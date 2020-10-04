@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :teams_project do
-    team_id { 1 }
+  factory :tasks_project do
+    task_id { 1 }
     project_id { 1 }
   end
 end

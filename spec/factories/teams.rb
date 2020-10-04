@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :team do
-    name { 'MyString' }
+    name { "#{Faker::Color.color_name} Team" }
     created_user_id { 1 }
   end
 end
