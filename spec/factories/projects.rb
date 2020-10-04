@@ -3,6 +3,6 @@ FactoryBot.define do
     name { 'MyString' }
     description { 'MyText' }
     team_id { 1 }
-    archived { false }
+    is_archived { false }
   end
 end
