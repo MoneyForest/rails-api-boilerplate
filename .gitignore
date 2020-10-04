@@ -32,7 +32,7 @@
 
 # docker
 /docker/db/mysql_data
-!/docker/db/mysql_data/.keep
+!/docker/db/mysql_data/.gitkeep
 
 /vendor
 
