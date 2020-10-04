@@ -14,9 +14,23 @@ docker/stop-swagger-editor:
 	cd docs/api/ && \
 		docker-compose down
 
+.PHONY: rails/db-apply
+rails/db-apply:
+	bundle exec rake ridgepole:apply
+
+.PHONY: rake/db-export
+rake/db-export:
+	bundle exec rake ridgepole:export
+
+.PHONY: rails/db-reset
+rails/db-reset:
+	bundle exec rails db:drop && \
+		bundle exec rails db:create && \
+			make rake/ridgepole-apply
+
 .PHONY: rails/db-seed
 rails/db-seed:
-	bundle exec rails db:reset && \
+	make rails/db-reset && \
 		bundle exec rails db:seed
 
 .PHONY: rails/routes
@@ -26,11 +40,3 @@ rails/routes:
 .PHONY: rails/run-server
 rails/run-server:
 	rm -f /tmp/pids/server.pid && bundle exec rails server
-
-.PHONY: rake/ridgepole-apply
-rake/ridgepole-apply:
-	bundle exec rake ridgepole:apply
-
-.PHONY: rake/ridgepole-export
-rake/ridgepole-export:
-	bundle exec rake ridgepole:export
