@@ -27,7 +27,8 @@
 /config/master.key
 
 # simplecov
-coverage
+/docs/test/*
+!/docs/test/.keep
 
 /vendor
 

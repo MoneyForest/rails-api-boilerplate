@@ -1,6 +1,15 @@
 require 'rake'
 require 'spec_helper'
 
+require 'simplecov'
+SimpleCov.start 'rails' do
+  coverage_dir('docs/test/')
+  add_filter 'app/channels'
+  add_filter 'app/jobs'
+  add_filter 'app/mailers'
+  add_filter 'lib'
+end
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
