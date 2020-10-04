@@ -22,6 +22,10 @@ rails/db-seed:
 rails/routes:
 	bundle exec rails routes
 
+.PHONY: rails/run-server
+rails/run-server:
+	rm -f /tmp/pids/server.pid && bundle exec rails server
+
 .PHONY: rake/ridgepole-apply
 rake/ridgepole-apply:
 	bundle exec rake ridgepole:apply
