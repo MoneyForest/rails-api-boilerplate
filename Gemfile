@@ -35,17 +35,19 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'ordinare'
   gem 'pry-byebug'
   gem 'pry-doc', require: false
   gem 'pry-rails'
+  gem 'rails-erd'
   gem 'rails_best_practices'
   gem 'rspec'
   gem 'rspec-rails', '~> 4.0.1'
   gem 'rspec-request_describer'
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec'
-  gem 'rubocop-performance', require: false
   gem 'simplecov', require: false
 end
 
