@@ -3,11 +3,9 @@
 create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
   t.string "name"
   t.text "description"
-  t.integer "team_id", null: false
   t.boolean "archived", default: false, null: false
   t.datetime "created_at", precision: 6, null: false
   t.datetime "updated_at", precision: 6, null: false
-  t.index ["team_id"], name: "index_projects_on_team_id"
 end
 
 create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -24,6 +22,13 @@ create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :
   t.index ["assignee_id"], name: "index_tasks_on_assignee_id"
   t.index ["creator_id"], name: "index_tasks_on_creator_id"
   t.index ["parent_id"], name: "index_tasks_on_parent_id"
+end
+
+create_table "tasks_projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  t.integer "task_id"
+  t.integer "project_id"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
 end
 
 create_table "teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -51,6 +56,20 @@ create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :
   t.datetime "updated_at", precision: 6, null: false
   t.index ["email"], name: "index_users_on_email", unique: true
   t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+end
+
+create_table "users_projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  t.integer "user_id"
+  t.integer "project_id"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+end
+
+create_table "users_tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  t.integer "user_id"
+  t.integer "task_id"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
 end
 
 create_table "users_teams", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
