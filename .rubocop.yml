@@ -30,6 +30,9 @@ Rails/FilePath:
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
 
+RSpec/NamedSubject:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
@@ -42,3 +45,7 @@ Style/FrozenStringLiteralComment:
 Layout/LineLength:
   Exclude:
     - 'config/initializers/devise.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
