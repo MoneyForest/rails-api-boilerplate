@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Authentication', type: :request do
+RSpec.describe '/auth_user', type: :request do
   describe 'POST /auth_user' do
     include_context 'a user defined'
 
