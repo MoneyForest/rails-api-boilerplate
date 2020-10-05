@@ -23,9 +23,9 @@ RSpec.configure do |config|
   # configured for committee-rails
   config.add_setting :committee_options
   config.committee_options = {
-      parse_response_by_content_type: false,
-      schema_path: Rails.root.join('docs', 'api', 'openapi.yaml').to_s,
-      prefix: '/api/v1'
+    parse_response_by_content_type: false,
+    schema_path: Rails.root.join('docs', 'api', 'openapi.yaml').to_s,
+    prefix: '/api/v1'
   }
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
