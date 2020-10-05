@@ -1,2 +1,2 @@
-CREATE USER officedevfdb01 IDENTIFIED BY 'officedevfdb';
-GRANT ALL PRIVILEGES ON *.* TO officedevfdb01;
+CREATE USER databaseuser IDENTIFIED BY 'databasepassword';
+GRANT ALL PRIVILEGES ON *.* TO databaseuser;
