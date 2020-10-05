@@ -25,14 +25,25 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - projects
                 properties:
                   projects:
                     type: array
                     items:
                       type: object
+                      required:
+                        - project
                       properties:
                         project:
                           type: object
+                          required:
+                            - id
+                            - name
+                            - description
+                            - is_archived
+                            - created_at
+                            - updated_at
                           properties:
                             id:
                               type: integer
@@ -62,6 +73,22 @@ paths:
                         is_archived: false
                         created_at: "2020-10-06T04:12:03.572+09:00"
                         updated_at: "2020-10-07T10:12:03.684+09:00"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - errors
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+              example:
+                errors:
+                  - "Not Authenticated"
 components:
   securitySchemes:
     Bearer:
