@@ -8,17 +8,17 @@ ci/static-code-analysis:
 docker/db-setup:
 	docker-compose run app make rails/db-setup
 
-.PHONY: docker/run-swagger-editor
-docker/run-swagger-editor:
+.PHONY: docker/run-swagger
+docker/run-swagger:
 	cd docs/api/ && \
-		docker-compose up -d swagger-editor
+		docker-compose up -d swagger-editor swagger-ui
 
 .PHONY: docker/run-app
 docker/run-app:
 	docker-compose up -d
 
-.PHONY: docker/stop-swagger-editor
-docker/stop-swagger-editor:
+.PHONY: docker/stop-swagger
+docker/stop-swagger:
 	cd docs/api/ && \
 		docker-compose down
 

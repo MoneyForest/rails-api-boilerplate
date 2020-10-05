@@ -64,8 +64,9 @@ $ make rails/db-setup
 $ make docker/run-swagger-editor
 ```
 
-- Access to http://localhost:8080/ and begin editing
+- Access to http://localhost:8000/ and begin editing
 - When you are done, go to > File/Save as YAML and overwrite the current `openapi.yaml` file
+- Access to http://localhost:8001/ and can show swagger ui
 
 ### How to edit DB scheme
 
