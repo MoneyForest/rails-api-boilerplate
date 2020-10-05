@@ -33,6 +33,8 @@ gem 'ridgepole'
 group :development, :test do
   gem 'awesome_print'
   gem 'brakeman', require: false
+  gem 'committee'
+  gem 'committee-rails'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'ordinare'
