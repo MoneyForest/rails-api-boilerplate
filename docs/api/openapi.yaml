@@ -1,39 +1,70 @@
 openapi: 3.0.2
 info:
+  title: rails-api-boilerplate
+  description: This is rails-api-boilerplate API
   version: 1.0.0
-  title: API
+security:
+  - Bearer: []
+servers:
+  - url: "http://localhost:8080/api/v1"
 tags:
-  - name: Repository
+  - name: projects
+    description: project
 paths:
-  # paths オブジェクト
-  /users:
-    # path item オブジェクト
-    get: # GET
-      # Operationオブジェクト
+  /projects:
+    get:
       tags:
-        - users
-      summary: Get all users.
-      description: Returns an array of User model
+        - projects
+      summary: Get all projects.
+      description: Returns an array of Project model
       parameters: []
-      responses: # レスポンス定義
-        '200': # HTTP status
-          description: A JSON array of User model
+      responses:
+        '200':
+          description: A JSON array of Project model
           content:
-            application/json: # レスポンスの形式指定
+            application/json:
               schema:
-                type: array
-                items:
-                  type: object # 型
-                  required: # 必須フィールド
-                    - id
-                  properties:
-                    id: # プロパティ名
-                      type: integer # 型
-                      format: int64 # フォーマット(int32, int64等)
-                    name:
-                      type: string
-                example: # サンプルデータ
-                  - id: 1
-                    name: John Doe
-                  - id: 2
-                    name: Jane Doe
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        project:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            is_archived:
+                              type: boolean
+                            created_at:
+                              type: string
+                            updated_at:
+                              type: string
+                example:
+                  projects:
+                    - project:
+                        id: 1
+                        name: "Hartmann Group Project No.1"
+                        description: "This is Hartmann Group Project No.1"
+                        is_archived: false
+                        created_at: "2020-10-05T05:02:03.369+09:00"
+                        updated_at: "2020-10-05T05:02:03.369+09:00"
+                    - project:
+                        id: 2
+                        name: "Hartmann Group Project No.2"
+                        description: "This is Hartmann Group Project No.2"
+                        is_archived: false
+                        created_at: "2020-10-06T04:12:03.572+09:00"
+                        updated_at: "2020-10-07T10:12:03.684+09:00"
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: Credentials or access token for API
