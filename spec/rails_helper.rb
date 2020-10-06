@@ -17,10 +17,14 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
+# configured for ridgepole
 # ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
   # configured for committee-rails
+  config.include Committee::Rails::Test::Methods
   config.add_setting :committee_options
   config.committee_options = {
     parse_response_by_content_type: false,
@@ -28,18 +32,19 @@ RSpec.configure do |config|
     prefix: '/api/v1'
   }
 
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
+  # configured for factory_bot_rails
   config.include FactoryBot::Syntax::Methods
+  config.before(:all) do
+    FactoryBot.reload
+  end
+
+  # configured for rspec-request_describer
   config.include RSpec::RequestDescriber, type: :request
 
   config.before(:suite) do
     Rails.application.load_tasks
+    # configured for ridgepole
     Rake.application['ridgepole:apply'].invoke
-  end
-
-  config.before(:all) do
-    FactoryBot.reload
   end
 
   config.use_transactional_fixtures = true
