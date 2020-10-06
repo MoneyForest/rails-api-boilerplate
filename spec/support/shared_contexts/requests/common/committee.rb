@@ -1,6 +1,4 @@
 RSpec.shared_context 'with committer schema check' do
-  include Committee::Rails::Test::Methods
-
   shared_examples 'committer schema check' do
     it 'confirm json schema' do
       subject
