@@ -13,12 +13,14 @@ AllCops:
     - 'db/schema.rb'
     - 'frontend/**/*'
     - 'tmp/**/*'
-    - 'Gemfile'
     - 'Gemfile.lock'
     - 'Rakefile'
     - 'vendor/**/*'
     - '**/spec_helper.rb'
     - '**/templates/**/*'
+
+Bundler/OrderedGems:
+  Enabled: true
 
 Rails:
   Enabled: true
