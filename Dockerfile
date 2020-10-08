@@ -20,7 +20,7 @@ COPY . /usr/src/rails-api-boilerplate/
 
 RUN bundle config build.nokogiri --use-system-libraries
 
-RUN bundle install
+RUN bundle install --jobs=4 --no-cache --without test
 
 ENV RAILS_HOST=0.0.0.0
 ENV RAILS_PORT=8080
