@@ -5,7 +5,7 @@ RSpec.describe '/healthz', type: :request do
     include_context 'with a defined user'
 
     context 'when valid request' do
-      include_context 'with valid request headers'
+      include_context 'with valid authenticated request headers'
 
       it 'returns a 200 response' do
         subject
@@ -14,7 +14,7 @@ RSpec.describe '/healthz', type: :request do
     end
 
     context 'when invalid request' do
-      include_context 'with invalid request headers'
+      include_context 'with invalid authenticated request headers'
 
       it 'returns a 401 response' do
         subject
@@ -23,7 +23,7 @@ RSpec.describe '/healthz', type: :request do
     end
 
     context 'when JWT decodeError' do
-      include_context 'with valid request headers'
+      include_context 'with valid authenticated request headers'
 
       before do
         allow(JsonWebToken).to receive(:decode).and_raise(JWT::VerificationError)

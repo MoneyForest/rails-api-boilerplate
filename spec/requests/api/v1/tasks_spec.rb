@@ -6,7 +6,7 @@ RSpec.describe '/api/v1/tasks', type: :request do
     include_context 'with a defined user'
 
     context 'when valid request' do
-      include_context 'with valid request headers'
+      include_context 'with valid authenticated request headers'
 
       context 'with a task associated user' do
         include_context 'with a task associated user'
@@ -30,7 +30,7 @@ RSpec.describe '/api/v1/tasks', type: :request do
 
     context 'when invalid request' do
       context 'when header is invalid' do
-        include_context 'with invalid request headers'
+        include_context 'with invalid authenticated request headers'
         # include_examples 'committer schema check'
 
         it 'returns a 401 response' do
