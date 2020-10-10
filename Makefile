@@ -1,3 +1,7 @@
+.PHONY: ci/validate
+ci/config-validate:
+	circleci config validate
+
 .PHONY: lint/security
 lint/security:
 	bundle exec brakeman
