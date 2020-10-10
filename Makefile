@@ -73,7 +73,7 @@ rails/db-setup:
 
 .PHONY: rails/gem-sorter
 rails/gem-sorter:
-	bundle exec ordinare
+	bundle exec rubocop -a Gemfile
 
 .PHONY: rails/routes
 rails/routes:
