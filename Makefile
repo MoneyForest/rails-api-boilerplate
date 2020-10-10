@@ -1,8 +1,10 @@
-.PHONY: ci/static-code-analysis
-ci/static-code-analysis:
-	bundle exec rubocop -a . &&  \
-		bundle exec brakeman -A -w3 -q . && \
-			bundle exec rails_best_practices .
+.PHONY: lint/security
+lint/security:
+	bundle exec brakeman
+
+.PHONY: docker/build-app
+docker/build-app:
+	docker-compose build
 
 .PHONY: docker/db-setup
 docker/db-setup:
@@ -25,6 +27,22 @@ docker/stop-swagger:
 .PHONY: docker/stop-app
 docker/stop-app:
 	docker-compose down
+
+.PHONY: lint/best-practice
+lint/best-practice:
+	bundle exec rails_best_practices
+
+.PHONY: lint/code-smell-detector
+lint/code-smell-detector:
+	bundle exec reek
+
+.PHONY: lint/ruby
+lint/ruby:
+	bundle exec rubocop -a
+
+.PHONY: lint/ruby-setup
+lint/ruby-setup:
+	bundle exec rubocop --auto-gen-config
 
 .PHONY: rails/db-apply
 rails/db-apply:
