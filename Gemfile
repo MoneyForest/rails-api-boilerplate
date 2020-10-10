@@ -42,6 +42,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rails_best_practices'
   gem 'rails-erd'
+  gem 'reek'
   gem 'rspec'
   gem 'rspec-rails', '~> 4.0.1'
   gem 'rspec-request_describer'
