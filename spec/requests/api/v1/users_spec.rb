@@ -1,10 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe '/auth_user', type: :request do
-  describe 'POST /auth_user' do
+RSpec.describe '/api/v1/users', type: :request do
+  describe 'POST /api/v1/users/authenticate' do
+    include_context 'with committer schema check'
     include_context 'with a defined user'
 
+    let(:headers) do
+      {
+        'Accept' => 'application/json',
+        'Content-Type' => 'application/json'
+      }
+    end
+
     context 'when valid request' do
+      include_examples 'committer schema check'
+
       let(:params) do
         {
           'email' => email,
@@ -19,6 +29,8 @@ RSpec.describe '/auth_user', type: :request do
     end
 
     context 'when invalid request' do
+      include_examples 'committer schema check'
+
       let(:params) do
         {
           'email' => email.reverse,

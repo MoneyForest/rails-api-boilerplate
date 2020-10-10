@@ -1,6 +1,7 @@
                    Prefix Verb   URI Pattern                                                                              Controller#Action
-                auth_user POST   /auth_user(.:format)                                                                     no_auth/authentication#authenticate_user
             healthz_index GET    /healthz(.:format)                                                                       healthz#index
+             api_v1_users POST   /api/v1/users(.:format)                                                                  api/v1/users#create
+api_v1_users_authenticate POST   /api/v1/users/authenticate(.:format)                                                     api/v1/users#authenticate
           api_v1_projects GET    /api/v1/projects(.:format)                                                               api/v1/projects#index
                           POST   /api/v1/projects(.:format)                                                               api/v1/projects#create
            api_v1_project GET    /api/v1/projects/:id(.:format)                                                           api/v1/projects#show
