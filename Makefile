@@ -88,3 +88,7 @@ rails/run-server:
 .PHONY: rails/run-rspec
 rails/run-rspec:
 	bundle exec rspec
+
+.PHONY: rails/tmp-cache-clear
+rails/tmp-cache-clear:
+	bundle exec rails tmp:cache:clear
