@@ -9,15 +9,16 @@ AllCops:
   TargetRubyVersion: 2.7
   Exclude:
     - 'bin/**/*'
-    - 'db/migrate/*'
-    - 'db/schema.rb'
+    - 'docker/**/*'
+    - 'docs/**/*'
     - 'frontend/**/*'
+    - 'log/**/*'
+    - 'public/**/*'
+    - 'spec/**/*'
+    - 'storage/**/*'
     - 'tmp/**/*'
-    - 'Gemfile.lock'
-    - 'Rakefile'
     - 'vendor/**/*'
-    - '**/spec_helper.rb'
-    - '**/templates/**/*'
+    - 'Gemfile.lock'
 
 Bundler/OrderedGems:
   Enabled: true
