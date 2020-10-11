@@ -2,6 +2,14 @@
 ci/config-validate:
 	circleci config validate
 
+.PHONY: ci/local-execute-rspec
+ci/local-execute-rspec:
+	circleci local execute --job rspec
+
+.PHONY: ci/local-execute-rubocop
+ci/local-execute-rubocop:
+	circleci local execute --job rubocop
+
 .PHONY: lint/security
 lint/security:
 	bundle exec brakeman
@@ -14,23 +22,23 @@ docker/build-app:
 docker/db-setup:
 	docker-compose run app make rails/db-setup
 
+.PHONY: docker/run-app
+docker/run-app:
+	docker-compose up -d
+
 .PHONY: docker/run-swagger
 docker/run-swagger:
 	cd docs/api/ && \
 		docker-compose up -d swagger-editor swagger-ui
 
-.PHONY: docker/run-app
-docker/run-app:
-	docker-compose up -d
+.PHONY: docker/stop-app
+docker/stop-app:
+	docker-compose down
 
 .PHONY: docker/stop-swagger
 docker/stop-swagger:
 	cd docs/api/ && \
 		docker-compose down
-
-.PHONY: docker/stop-app
-docker/stop-app:
-	docker-compose down
 
 .PHONY: lint/best-practice
 lint/best-practice:

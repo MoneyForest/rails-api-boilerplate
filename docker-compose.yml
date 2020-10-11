@@ -23,7 +23,7 @@ services:
       MYSQL_DATABASE: rails_boilerplate_development
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: databaseuser
-      MYSQL_PASSWORD: databasepassword
+      MYSQL_PASSWORD: password
       TZ: Asia/Tokyo
     command: --default-authentication-plugin=mysql_native_password
     ports:
