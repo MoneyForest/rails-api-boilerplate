@@ -7,8 +7,6 @@ class JsonWebToken
         payload,
         Rails.application.credentials.config[:secret_key_base]
       )
-    rescue StandardError
-      nil
     end
 
     def decode(token)
