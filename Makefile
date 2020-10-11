@@ -2,13 +2,9 @@
 ci/config-validate:
 	circleci config validate
 
-.PHONY: ci/local-execute-rspec
-ci/local-execute-rspec:
-	circleci local execute --job rspec
-
-.PHONY: ci/local-execute-rubocop
-ci/local-execute-rubocop:
-	circleci local execute --job rubocop
+.PHONY: ci/static-code-anarisys
+ci/static-code-anarisys:
+	circleci local execute --job static-code-anarisys
 
 .PHONY: lint/security
 lint/security:

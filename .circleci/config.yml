@@ -1,10 +1,10 @@
-  # Ruby CircleCI 2.0 configuration file
+ # Ruby CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
 version: 2
 jobs:
-  rubocop:
+  static-code-anarisys:
     docker:
       - image: circleci/ruby:2.7.1
         environment:
@@ -12,36 +12,12 @@ jobs:
           DB_HOST: 127.0.0.1
           DB_USERNAME: databaseuser
           DB_PASSWORD: password
-      - image: circleci/mysql:5.7.31
-    working_directory: ~/usr/src/rails-api-boilerplate
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-      - run:
-          name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-      # Rubocop
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop
-  rspec:
-    docker:
-      - image: circleci/ruby:2.7.1
+      - image: circleci/mysql:5.7.31-ram
         environment:
-          RAILS_ENV: test
-          DB_HOST: 127.0.0.1
-          DB_USERNAME: databaseuser
-          DB_PASSWORD: password
-      - image: circleci/mysql:5.7.31
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: rails_api_boilerplate_test
+          MYSQL_USER: databaseuser
+          MYSQL_PASSWORD: password
     working_directory: ~/usr/src/rails-api-boilerplate
     steps:
       - checkout
@@ -52,8 +28,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: install dependencies
-          command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
@@ -64,16 +39,17 @@ jobs:
           command: |
             dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
             make rails/db-setup
-      # Rspec
+      # Rubocop
+      - run:
+          name: run rubocop
+          command: bundle exec rubocop
+        # Rspec
       - run:
           name: run rspec
           command: bundle exec rspec
 
 workflows:
   version: 2
-  rubocop_rspec:
+  static-code-anarisys:
     jobs:
-      - rubocop
-      - rspec:
-          requires:
-            - rubocop
+      - static-code-anarisys
