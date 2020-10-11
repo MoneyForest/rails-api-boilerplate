@@ -1,4 +1,4 @@
-# Ruby CircleCI 2.0 configuration file
+  # Ruby CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
@@ -9,22 +9,22 @@ jobs:
       - image: circleci/ruby:2.7.1
         environment:
           RAILS_ENV: test
-          DB_LOCAL_USERNAME: 'databaseuser'
-          DB_LOCAL_PASSWORD: 'password'
-      - image: circleci/mysql:5.7.22
-        environment:
-          MYSQL_DATABASE: 'rails_api_boilerplate_test'
-          MYSQL_USER: 'databaseuser'
-          MYSQL_ROOT_PASSWORD: 'password'
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: databaseuser
+          DB_PASSWORD: password
+      - image: circleci/mysql:5.7.31
     working_directory: ~/usr/src/rails-api-boilerplate
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
@@ -38,13 +38,10 @@ jobs:
       - image: circleci/ruby:2.7.1
         environment:
           RAILS_ENV: test
-          DB_LOCAL_USERNAME: 'databaseuser'
-          DB_LOCAL_PASSWORD: 'password'
-      - image: circleci/mysql:5.7.22
-        environment:
-          MYSQL_DATABASE: 'rails_api_boilerplate_test'
-          MYSQL_USER: 'databaseuser'
-          MYSQL_ROOT_PASSWORD: 'password'
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: databaseuser
+          DB_PASSWORD: password
+      - image: circleci/mysql:5.7.31
     working_directory: ~/usr/src/rails-api-boilerplate
     steps:
       - checkout
@@ -53,20 +50,23 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       # Database setup
       - run:
-          name: bundle exec
+          name: database setup
           command: |
             dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-            make docker/db-setup
+            make rails/db-setup
       # Rspec
       - run:
-          name: Rspec
+          name: run rspec
           command: bundle exec rspec
 
 workflows:

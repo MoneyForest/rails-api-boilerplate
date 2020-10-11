@@ -4,6 +4,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      DB_USERNAME: databaseuser
+      DB_PASSWORD: password
+      DB_HOST: db
+      TZ: Asia/Tokyo
     command: make rails/run-server
     volumes:
       - .:/usr/src/rails-api-boilerplate
