@@ -9,14 +9,6 @@
 
 - rbenv installed on Homebrew
 
-### Environment
-
-```
-export DB_LOCAL_USERNAME=user
-export DB_LOCAL_PASSWORD=password
-export DB_LOCAL_HOST=localhost
-```
-
 ### Application
 
 #### Confirm installation of ruby 2.7.1
@@ -46,13 +38,18 @@ $ rbenv exec gem install bundler
 $ bundle install
 ```
 
-### DataBase
+### Database
 
 - Start MySQL locally before
 
 ```
 $ make rails/db-setup
 ```
+
+### CI
+
+- Please set environment variable `RAILS_MASTER_KEY` it is value of `config/master.key`
+- You cannot JWT decode if you don't set it.
 
 ---
 
