@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  static-code-anarisys:
+  test-and-code-anarisys:
     docker:
       - image: circleci/ruby:2.7.1
         environment:
@@ -58,6 +58,6 @@ jobs:
 
 workflows:
   version: 2
-  static-code-anarisys:
+  test-and-code-anarisys:
     jobs:
-      - static-code-anarisys
+      - test-and-code-anarisys
