@@ -37,3 +37,6 @@
 /vendor
 
 .idea
+
+# environment
+.envrc
