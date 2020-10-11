@@ -9,8 +9,9 @@ jobs:
       - image: circleci/ruby:2.7.1
         environment:
           RAILS_ENV: test
-          POSTGRES_HOST: 127.0.0.1
-      - image: circleci/mysql:5.7
+          DB_LOCAL_USERNAME: 'databaseuser'
+          DB_LOCAL_PASSWORD: 'password'
+      - image: circleci/mysql:5.7.22
     working_directory: ~/usr/src/rails-api-boilerplate
     steps:
       - checkout
