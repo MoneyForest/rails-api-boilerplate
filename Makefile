@@ -2,9 +2,9 @@
 ci/config-validate:
 	circleci config validate
 
-.PHONY: lint/security
-lint/security:
-	bundle exec brakeman
+.PHONY: ci/static-code-anarisys
+ci/static-code-anarisys:
+	circleci local execute --job static-code-anarisys
 
 .PHONY: docker/build-app
 docker/build-app:
@@ -14,23 +14,27 @@ docker/build-app:
 docker/db-setup:
 	docker-compose run app make rails/db-setup
 
-.PHONY: docker/run-swagger
-docker/run-swagger:
-	cd docs/api/ && \
-		docker-compose up -d swagger-editor swagger-ui
+.PHONY: docker/exec-bash
+docker/exec-bash:
+	docker exec -i -t rails-api-boilerplate_app_1 bash
 
 .PHONY: docker/run-app
 docker/run-app:
 	docker-compose up -d
 
-.PHONY: docker/stop-swagger
-docker/stop-swagger:
+.PHONY: docker/run-swagger
+docker/run-swagger:
 	cd docs/api/ && \
-		docker-compose down
+		docker-compose up -d swagger-editor swagger-ui
 
 .PHONY: docker/stop-app
 docker/stop-app:
 	docker-compose down
+
+.PHONY: docker/stop-swagger
+docker/stop-swagger:
+	cd docs/api/ && \
+		docker-compose down
 
 .PHONY: lint/best-practice
 lint/best-practice:
@@ -47,6 +51,10 @@ lint/ruby:
 .PHONY: lint/ruby-setup
 lint/ruby-setup:
 	bundle exec rubocop --auto-gen-config
+
+.PHONY: lint/security
+lint/security:
+	bundle exec brakeman
 
 .PHONY: rails/db-apply
 rails/db-apply:

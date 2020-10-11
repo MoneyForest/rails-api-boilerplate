@@ -1,2 +1,1 @@
-CREATE USER databaseuser IDENTIFIED BY 'databasepassword';
-GRANT ALL PRIVILEGES ON *.* TO databaseuser;
+grant all privileges on *.* to 'databaseuser'@'%' identified by 'password' with grant option;
