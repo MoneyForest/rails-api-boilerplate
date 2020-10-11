@@ -6,10 +6,6 @@ ci/config-validate:
 ci/static-code-anarisys:
 	circleci local execute --job static-code-anarisys
 
-.PHONY: lint/security
-lint/security:
-	bundle exec brakeman
-
 .PHONY: docker/build-app
 docker/build-app:
 	docker-compose build
@@ -17,6 +13,10 @@ docker/build-app:
 .PHONY: docker/db-setup
 docker/db-setup:
 	docker-compose run app make rails/db-setup
+
+.PHONY: docker/exec-bash
+docker/exec-bash:
+	docker exec -i -t rails-api-boilerplate_app_1 bash
 
 .PHONY: docker/run-app
 docker/run-app:
@@ -51,6 +51,10 @@ lint/ruby:
 .PHONY: lint/ruby-setup
 lint/ruby-setup:
 	bundle exec rubocop --auto-gen-config
+
+.PHONY: lint/security
+lint/security:
+	bundle exec brakeman
 
 .PHONY: rails/db-apply
 rails/db-apply:
