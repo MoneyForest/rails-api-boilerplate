@@ -30,9 +30,16 @@
 /doc/test/*
 !/doc/test/.keep
 
+# swagger
+/doc/api/node_modules/*
+!/doc/api/node_modules/.keep
+
 # docker
 /docker/db/mysql_data/*
 !/docker/db/mysql_data/.keep
+
+
+
 
 /vendor
 
