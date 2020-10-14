@@ -1,0 +1,13 @@
+teams:
+  - team:
+      id: 1
+      name: "Moore, Upton and Kessler Team No.1"
+      created_user_id: 66
+      created_at: "2020-10-05T05:02:03.369+09:00"
+      updated_at: "2020-10-05T05:02:03.369+09:00"
+  - team:
+      id: 2
+      name: "Moore, Upton and Kessler Team No.2"
+      created_user_id: 68
+      created_at: "2020-10-05T05:02:03.369+09:00"
+      updated_at: "2020-10-05T05:02:03.369+09:00"

@@ -1,0 +1,15 @@
+projects:
+  - project:
+      id: 1
+      name: "Hartmann Group Project No.1"
+      description: "This is Hartmann Group Project No.1"
+      is_archived: false
+      created_at: "2020-10-05T05:02:03.369+09:00"
+      updated_at: "2020-10-05T05:02:03.369+09:00"
+  - project:
+      id: 2
+      name: "Hartmann Group Project No.2"
+      description: "This is Hartmann Group Project No.2"
+      is_archived: false
+      created_at: "2020-10-06T04:12:03.572+09:00"
+      updated_at: "2020-10-07T10:12:03.684+09:00"

@@ -1,0 +1,10 @@
+projects_index:
+  $ref: './v1/projects/create.yaml'
+tasks_index:
+  $ref: './v1/tasks/create.yaml'
+teams_index:
+  $ref: './v1/teams/create.yaml'
+users_authenticate:
+  $ref: './v1/users/authenticate.yaml'
+users_create:
+  $ref: './v1/users/create.yaml'
