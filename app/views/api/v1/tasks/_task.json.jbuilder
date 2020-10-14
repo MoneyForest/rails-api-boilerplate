@@ -1,7 +1,7 @@
 json.id task.id
 json.name task.name
 json.description task.description
-json.deadline_at_at task.deadline_at
+json.deadline_at task.deadline_at
 json.repeats task.repeats
 json.is_completed task.is_completed
 json.parent_task_id task.parent_task_id
