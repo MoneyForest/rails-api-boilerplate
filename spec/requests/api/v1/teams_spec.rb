@@ -10,7 +10,7 @@ RSpec.describe '/api/v1/teams', type: :request do
 
       context 'with a team associated user' do
         include_context 'with a team associated user'
-        # include_examples 'committer schema check'
+        include_examples 'committer schema check'
 
         it 'returns a 200 response' do
           subject
@@ -19,7 +19,7 @@ RSpec.describe '/api/v1/teams', type: :request do
       end
 
       context 'with no team associated user' do
-        # include_examples 'committer schema check'
+        include_examples 'committer schema check'
 
         it 'returns a 200 response' do
           subject
@@ -31,7 +31,7 @@ RSpec.describe '/api/v1/teams', type: :request do
     context 'when invalid request' do
       context 'when header is invalid' do
         include_context 'with invalid authenticated request headers'
-        # include_examples 'committer schema check'
+        include_examples 'committer schema check'
 
         it 'returns a 401 response' do
           subject
