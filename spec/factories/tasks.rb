@@ -3,7 +3,7 @@ FactoryBot.define do
     name { "#{Faker::Alphanumeric.alpha(number: 1)} Task" }
     description { "All you have to do for this task is #{Faker::Alphanumeric.alpha(number: 200)}" }
     deadline_at { Time.zone.now }
-    repeats { nil }
+    repeats { 'par day' }
     is_completed { false }
     parent_task_id { 1 }
     assigned_user_id { 1 }
