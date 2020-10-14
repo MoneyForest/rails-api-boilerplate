@@ -2,9 +2,9 @@
 ci/config-validate:
 	circleci config validate
 
-.PHONY: ci/static-code-anarisys
-ci/static-code-anarisys:
-	circleci local execute --job static-code-anarisys
+.PHONY: ci/ test-and-code-anarisys
+ci/test-and-code-anarisys:
+	circleci local execute --job test-and-code-anarisys
 
 .PHONY: docker/build-app
 docker/build-app:
