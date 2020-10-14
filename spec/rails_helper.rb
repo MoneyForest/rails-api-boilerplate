@@ -3,7 +3,7 @@ require 'spec_helper'
 
 require 'simplecov'
 SimpleCov.start 'rails' do
-  coverage_dir('docs/test/')
+  coverage_dir('doc/test/')
   add_filter 'app/channels'
   add_filter 'app/jobs'
   add_filter 'app/mailers'
@@ -28,7 +28,7 @@ RSpec.configure do |config|
   config.add_setting :committee_options
   config.committee_options = {
     parse_response_by_content_type: false,
-    schema_path: Rails.root.join('docs', 'api', 'openapi.yaml').to_s,
+    schema_path: Rails.root.join('doc', 'api', 'openapi.yaml').to_s,
     prefix: '/api/v1'
   }
 

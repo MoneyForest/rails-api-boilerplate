@@ -24,7 +24,7 @@ docker/run-app:
 
 .PHONY: docker/run-swagger
 docker/run-swagger:
-	cd docs/api/ && \
+	cd doc/api/ && \
 		docker-compose up -d swagger-editor swagger-ui
 
 .PHONY: docker/stop-app
@@ -33,7 +33,7 @@ docker/stop-app:
 
 .PHONY: docker/stop-swagger
 docker/stop-swagger:
-	cd docs/api/ && \
+	cd doc/api/ && \
 		docker-compose down
 
 .PHONY: lint/best-practice
@@ -90,7 +90,7 @@ rails/gem-sorter:
 .PHONY: rails/routes
 rails/routes:
 	rm -rf docs/routes/routes.txt && \
-		bundle exec rails routes > docs/routes/routes.txt && \
+		bundle exec rails routes > doc/routes/routes.txt && \
 			bundle exec rails routes
 
 .PHONY: rails/run-server

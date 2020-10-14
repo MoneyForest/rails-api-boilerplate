@@ -10,7 +10,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'docker/**/*'
-    - 'docs/**/*'
+    - 'doc/**/*'
     - 'frontend/**/*'
     - 'log/**/*'
     - 'public/**/*'

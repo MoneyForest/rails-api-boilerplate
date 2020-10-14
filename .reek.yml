@@ -25,7 +25,7 @@ exclude_paths:
   - 'config'
   - 'db'
   - 'docker'
-  - 'docs'
+  - 'doc'
   - 'frontend'
   - 'log'
   - 'public'

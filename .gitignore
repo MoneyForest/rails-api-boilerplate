@@ -27,8 +27,8 @@
 /config/master.key
 
 # simplecov
-/docs/test/*
-!/docs/test/.keep
+/doc/test/*
+!/doc/test/.keep
 
 # docker
 /docker/db/mysql_data/*
