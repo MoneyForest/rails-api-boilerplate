@@ -5,7 +5,7 @@ class JsonWebToken
     def encode(payload)
       JWT.encode(
         payload,
-        Rails.application.credentials.config[:secret_key_base]
+        '0c31e7f7da70866fe43d4f2cb93a56c2'
       )
     end
 
@@ -13,7 +13,7 @@ class JsonWebToken
       HashWithIndifferentAccess.new(
         JWT.decode(
           token,
-          Rails.application.credentials.config[:secret_key_base]
+          '0c31e7f7da70866fe43d4f2cb93a56c2'
         )[0]
       )
     rescue StandardError
