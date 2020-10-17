@@ -62,7 +62,7 @@ rails/db-apply:
 
 .PHONY: rails/db-erd-generate
 rails/db-erd-generate:
-	bundle exec erd --filename=docs/db/erd
+	bundle exec erd --filename=doc/db/erd
 
 .PHONY: rails/db-export
 rails/db-export:
