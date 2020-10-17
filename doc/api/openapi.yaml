@@ -10,6 +10,8 @@ servers:
 tags:
   - name: projects
   - name: users
+  - name: tasks
+  - name: teams
 paths:
   /projects:
     get:
@@ -78,12 +80,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      type: string
+                $ref: '#/components/schemas/401'
               example:
                 errors:
                   - "Not Authenticated"
@@ -165,15 +162,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      type: string
+                $ref: '#/components/schemas/401'
               example:
                 errors:
-                  - "Invalid email/password"
+                  - "Not Authenticated"
   /tasks:
     get:
       tags:
@@ -250,12 +242,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      type: string
+                $ref: '#/components/schemas/401'
               example:
                 errors:
                   - "Not Authenticated"
@@ -311,12 +298,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      type: string
+                $ref: '#/components/schemas/401'
               example:
                 errors:
                   - "Not Authenticated"
@@ -326,3 +308,11 @@ components:
       type: http
       scheme: bearer
       description: Credentials or access token for API
+  schemas:
+    401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
