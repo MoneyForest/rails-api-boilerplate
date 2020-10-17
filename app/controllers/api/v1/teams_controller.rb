@@ -2,22 +2,25 @@ class Api::V1::TeamsController < Api::V1::ApplicationController
   before_action :set_team, only: %i[show update destroy]
 
   def index
-    users_team = current_user.users_team
-    @teams = Team.where(id: users_team.pluck(:team_id))
+    @teams = Team.preload(:teams_project, :project, :users_team, :user)
+    render json: @teams, each_serializer: TeamSerializer
   end
 
   def show; end
 
   def create
     @team = Team.create!(create_params.merge(created_user_id: current_user.id))
+    render json: @team, serializer: TeamSerializer
   end
 
   def update
     @team.update!(update_params)
+    render json: @team, serializer: TeamSerializer
   end
 
   def destroy
     @team.destroy!
+    render json: @team, serializer: TeamSerializer
   end
 
   private
@@ -35,7 +38,6 @@ class Api::V1::TeamsController < Api::V1::ApplicationController
   end
 
   def set_team
-    users_team = current_user.users_team.find_by!(team_id: params[:id])
-    @team = Team.find(users_team.team_id)
+    @team = Team.find(params[:id])
   end
 end

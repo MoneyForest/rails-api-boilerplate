@@ -2,22 +2,25 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   before_action :set_project, only: %i[show update destroy]
 
   def index
-    users_project = current_user.users_project
-    @projects = Project.where(id: users_project.pluck(:project_id))
+    @projects = Project.preload(:teams_project, :team, :tasks_project, :task, :users_project, :user)
+    render json: @projects, each_serializer: ProjectSerializer
   end
 
   def show; end
 
   def create
     @project = Project.create!(create_params.merge(is_archived: 0))
+    render json: @project, serializer: ProjectSerializer
   end
 
   def update
     @project.update!(update_params)
+    render json: @project, serializer: ProjectSerializer
   end
 
   def destroy
     @project.destroy!
+    render json: @project, serializer: ProjectSerializer
   end
 
   private
@@ -38,7 +41,6 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def set_project
-    users_project = current_user.users_project.find_by!(project_id: params[:id])
-    @project = Project.find(users_project.project_id)
+    @project = Project.find(params[:id])
   end
 end

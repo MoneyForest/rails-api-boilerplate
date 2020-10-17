@@ -2,22 +2,25 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   before_action :set_task, only: %i[show update destroy]
 
   def index
-    users_task = current_user.users_task
-    @tasks = Task.where(id: users_task.pluck(:task_id))
+    @tasks = Task.preload(:tasks_project, :project, :users_task, :user)
+    render json: @tasks, each_serializer: TaskSerializer
   end
 
   def show; end
 
   def create
     @task = Task.create!(create_params.merge(created_user_id: current_user.id))
+    render json: @task, serializer: TaskSerializer
   end
 
   def update
     @task.update!(update_params)
+    render json: @task, serializer: TaskSerializer
   end
 
   def destroy
     @task.destroy!
+    render json: @task, serializer: TaskSerializer
   end
 
   private
@@ -46,7 +49,6 @@ class Api::V1::TasksController < Api::V1::ApplicationController
   end
 
   def set_task
-    users_task = current_user.users_task.find_by!(task_id: params[:id])
-    @task = Task.find(users_task.task_id)
+    @task = Task.find(params[:id])
   end
 end
