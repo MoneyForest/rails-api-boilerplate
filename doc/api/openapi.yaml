@@ -160,7 +160,7 @@ paths:
                 $ref: '#/components/schemas/401'
               example:
                 errors:
-                  - "Not Authenticated"
+                  - "Invalid Email/Password"
   /tasks:
     get:
       tags:

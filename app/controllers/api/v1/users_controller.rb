@@ -17,7 +17,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     if user&.valid_password?(params[:password])
       render json: payload(user)
     else
-      render json: { errors: ['Invalid email/password'] }, status: :unauthorized
+      render json: { errors: ['Invalid Email/Password'] }, status: :unauthorized
     end
   end
 
