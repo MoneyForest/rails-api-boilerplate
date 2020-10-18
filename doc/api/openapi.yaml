@@ -964,6 +964,8 @@ components:
           type: string
     401:
       type: object
+      required:
+        - errors
       properties:
         errors:
           type: array
@@ -971,6 +973,8 @@ components:
             type: string
     404:
       type: object
+      required:
+        - errors
       properties:
         errors:
           type: array
