@@ -6,7 +6,9 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     render json: @tasks, each_serializer: TaskSerializer
   end
 
-  def show; end
+  def show
+    render json: @task, serializer: TaskSerializer
+  end
 
   def create
     @task = Task.create!(create_params.merge(created_user_id: current_user.id))
@@ -31,7 +33,6 @@ class Api::V1::TasksController < Api::V1::ApplicationController
       :description,
       :description,
       :deadline_at,
-      :repeats,
       :parent_task_id,
       :assigned_user_id
     )
@@ -42,7 +43,6 @@ class Api::V1::TasksController < Api::V1::ApplicationController
       :name,
       :description,
       :deadline_at,
-      :repeats,
       :parent_task_id,
       :assigned_user_id
     )

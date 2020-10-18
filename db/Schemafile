@@ -12,7 +12,6 @@ create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :
   t.string "name"
   t.string "description", limit: 2000
   t.datetime "deadline_at", precision: 6
-  t.string "repeats"
   t.boolean "is_completed", default: false, null: false
   t.integer "parent_task_id"
   t.integer "assigned_user_id"
