@@ -83,7 +83,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - projects
+                  - project
                 properties:
                   project:
                     $ref: '#/components/schemas/project'
@@ -104,15 +104,6 @@ paths:
               example:
                 errors:
                   - "Not Authenticated"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/404'
-              example:
-                errors:
-                  - "Not Found"
   /projects/{id}:
     get:
       tags:
@@ -133,7 +124,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - projects
+                  - project
                 properties:
                   project:
                     $ref: '#/components/schemas/project'
@@ -198,7 +189,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - projects
+                  - project
                 properties:
                   project:
                     $ref: '#/components/schemas/project'
@@ -247,7 +238,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - projects
+                  - project
                 properties:
                   project:
                     $ref: '#/components/schemas/project'
@@ -468,15 +459,6 @@ paths:
               example:
                 errors:
                   - "Not Authenticated"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/404'
-              example:
-                errors:
-                  - "Not Found"
   /tasks/{id}:
     get:
       tags:
@@ -497,7 +479,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - tasks
+                  - task
                 properties:
                   task:
                     $ref: '#/components/schemas/task'
@@ -572,7 +554,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - tasks
+                  - task
                 properties:
                   task:
                     $ref: '#/components/schemas/task'
@@ -625,7 +607,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - tasks
+                  - task
                 properties:
                   task:
                     $ref: '#/components/schemas/task'
@@ -743,15 +725,6 @@ paths:
               example:
                 errors:
                   - "Not Authenticated"
-        404:
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/404'
-              example:
-                errors:
-                  - "Not Found"
   /teams/{id}:
     get:
       tags:
@@ -772,7 +745,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - teams
+                  - team
                 properties:
                   team:
                     $ref: '#/components/schemas/team'
@@ -830,7 +803,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - teams
+                  - team
                 properties:
                   team:
                     $ref: '#/components/schemas/team'
@@ -878,7 +851,7 @@ paths:
               schema:
                 type: object
                 required:
-                  - teams
+                  - team
                 properties:
                   team:
                     $ref: '#/components/schemas/team'
