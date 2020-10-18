@@ -126,7 +126,7 @@ RSpec.describe '/api/v1/projects', type: :request do
 
         it 'returns a 404 response' do
           subject
-          expect(request.path).to eq api_v1_project_path(project.id)
+          expect(request.path).to eq api_v1_project_path(project.id + 1)
           expect(response).to have_http_status :not_found
         end
       end
