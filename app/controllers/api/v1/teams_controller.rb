@@ -6,7 +6,9 @@ class Api::V1::TeamsController < Api::V1::ApplicationController
     render json: @teams, each_serializer: TeamSerializer
   end
 
-  def show; end
+  def show
+    render json: @team, serializer: TeamSerializer
+  end
 
   def create
     @team = Team.create!(create_params.merge(created_user_id: current_user.id))

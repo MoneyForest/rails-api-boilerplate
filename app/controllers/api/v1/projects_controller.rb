@@ -6,7 +6,9 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
     render json: @projects, each_serializer: ProjectSerializer
   end
 
-  def show; end
+  def show
+    render json: @project, serializer: ProjectSerializer
+  end
 
   def create
     @project = Project.create!(create_params.merge(is_archived: 0))
