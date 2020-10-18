@@ -31,7 +31,6 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     params.permit(
       :name,
       :description,
-      :description,
       :deadline_at,
       :parent_task_id,
       :assigned_user_id

@@ -18,11 +18,10 @@ paths:
       tags:
         - projects
       summary: Get all projects.
-      description: Returns an array of Project model
       parameters: []
       responses:
-        '200':
-          description: A JSON array of Project model
+        200:
+          description: OK
           content:
             application/json:
               schema:
@@ -33,27 +32,7 @@ paths:
                   projects:
                     type: array
                     items:
-                      type: object
-                      required:
-                        - id
-                        - name
-                        - description
-                        - is_archived
-                        - created_at
-                        - updated_at
-                      properties:
-                        id:
-                          type: integer
-                        name:
-                          type: string
-                        description:
-                          type: string
-                        is_archived:
-                          type: boolean
-                        created_at:
-                          type: string
-                        updated_at:
-                          type: string
+                      $ref: '#/components/schemas/project'
                 example:
                   projects:
                     -
@@ -70,7 +49,7 @@ paths:
                       is_archived: false
                       created_at: "2020-10-06T04:12:03.572+09:00"
                       updated_at: "2020-10-07T10:12:03.684+09:00"
-        '401':
+        401:
           description: Unauthorized
           content:
             application/json:
@@ -79,12 +58,230 @@ paths:
               example:
                 errors:
                   - "Not Authenticated"
+    post:
+      tags:
+        - projects
+      summary: Create a project.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+            example:
+              name: Hartmann Group Project No.1
+              description: This is Hartmann Group Project No.1
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - projects
+                properties:
+                  project:
+                    $ref: '#/components/schemas/project'
+                example:
+                  project:
+                    id: 1
+                    name: "Hartmann Group Project No.1"
+                    description: "This is Hartmann Group Project No.1"
+                    is_archived: false
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
+  /projects/{id}:
+    get:
+      tags:
+        - projects
+      summary: Get a project.
+      parameters:
+        - name: id
+          in: path
+          description: id of project to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - projects
+                properties:
+                  project:
+                    $ref: '#/components/schemas/project'
+                example:
+                  project:
+                    id: 1
+                    name: "Hartmann Group Project No.1"
+                    description: "This is Hartmann Group Project No.1"
+                    is_archived: false
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
+    put:
+      tags:
+        - projects
+      summary: Update a project.
+      parameters:
+        - name: id
+          in: path
+          description: id of project to return
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                is_archived:
+                  type: boolean
+            example:
+              name: Hartmann Group Project No.1
+              description: This is Hartmann Group Project No.1
+              is_archived: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - projects
+                properties:
+                  project:
+                    $ref: '#/components/schemas/project'
+                example:
+                  project:
+                    id: 1
+                    name: "Hartmann Group Project No.1"
+                    description: "This is Hartmann Group Project No.1"
+                    is_archived: true
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
+    delete:
+      tags:
+        - projects
+      summary: Delete a project.
+      parameters:
+        - name: id
+          in: path
+          description: id of project to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - projects
+                properties:
+                  project:
+                    $ref: '#/components/schemas/project'
+                example:
+                  project:
+                    id: 1
+                    name: "Hartmann Group Project No.1"
+                    description: "This is Hartmann Group Project No.1"
+                    is_archived: false
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
   /users:
     post:
       tags:
         - users
       summary: Create a user.
-      description: Creates a user and Returns user's auth token
       requestBody:
         content:
           application/json:
@@ -105,7 +302,7 @@ paths:
               password: password
       parameters: []
       responses:
-        '200':
+        200:
           description: A JSON user's auth token
           content:
             application/json:
@@ -121,7 +318,6 @@ paths:
       tags:
         - users
       summary: Authenticate a user.
-      description: Authenticate a user and Returns user's auth token
       requestBody:
         content:
           application/json:
@@ -141,7 +337,7 @@ paths:
               email: sample@email.com
               password: password
       responses:
-        '200':
+        200:
           description: A JSON user's auth token
           content:
             application/json:
@@ -152,7 +348,7 @@ paths:
                     type: string
               example:
                 auth_token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMDIsImV4cCI6MTYwMzU1OTMzMn0.o_RZeJxzJTcdN30PmxpH6zd0BrUvn477pTQCfaoYZOE
-        '401':
+        401:
           description: Unauthorized
           content:
             application/json:
@@ -160,16 +356,15 @@ paths:
                 $ref: '#/components/schemas/401'
               example:
                 errors:
-                  - "Invalid Email/Password"
+                  - "Not Authenticated"
   /tasks:
     get:
       tags:
         - tasks
       summary: Get all tasks.
-      description: Returns an array of Task model
       parameters: []
       responses:
-        '200':
+        200:
           description: A JSON array of Task model
           content:
             application/json:
@@ -179,28 +374,7 @@ paths:
                   tasks:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        name:
-                          type: string
-                        description:
-                          type: string
-                        deadline_at:
-                          type: string
-                        is_completed:
-                          type: boolean
-                        parent_task_id:
-                          type: integer
-                        assigned_user_id:
-                          type: integer
-                        created_user_id:
-                          type: integer
-                        created_at:
-                          type: string
-                        updated_at:
-                          type: string
+                      $ref: '#/components/schemas/task'
               example:
                 tasks:
                   -
@@ -225,7 +399,7 @@ paths:
                     created_user_id: 89
                     created_at: "2020-10-05T05:02:03.369+09:00"
                     updated_at: "2020-10-05T05:02:03.369+09:00"
-        '401':
+        401:
           description: Unauthorized
           content:
             application/json:
@@ -234,16 +408,266 @@ paths:
               example:
                 errors:
                   - "Not Authenticated"
+    post:
+      tags:
+        - tasks
+      summary: Create a task.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                deadline_at:
+                  type: string
+                parent_task_id:
+                  type: integer
+                assigned_user_id:
+                  type: integer
+            example:
+              name: Hartmann Group Project No.1
+              description: This is Hartmann Group Project No.1
+              deadline_at: "2020-10-11T08:44:08.705+09:00"
+              parent_task_id: 43
+              assigned_user_id: 32
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/task'
+              example:
+                task:
+                  id: 1
+                  name: "Moore, Upton and Kessler Task No.1"
+                  description: "This is Moore, Upton and Kessler Task No.1"
+                  deadline_at: "2020-10-11T08:44:08.705+09:00"
+                  is_completed: false
+                  parent_task_id: 43
+                  assigned_user_id: 32
+                  created_user_id: 66
+                  created_at: "2020-10-05T05:02:03.369+09:00"
+                  updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
+  /tasks/{id}:
+    get:
+      tags:
+        - tasks
+      summary: Get a task.
+      parameters:
+        - name: id
+          in: path
+          description: id of task to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - tasks
+                properties:
+                  task:
+                    $ref: '#/components/schemas/task'
+                example:
+                  task:
+                    id: 1
+                    name: "Moore, Upton and Kessler Task No.1"
+                    description: "This is Moore, Upton and Kessler Task No.1"
+                    deadline_at: "2020-10-11T08:44:08.705+09:00"
+                    is_completed: false
+                    parent_task_id: 43
+                    assigned_user_id: 32
+                    created_user_id: 66
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
+    put:
+      tags:
+        - tasks
+      summary: Update a task.
+      parameters:
+        - name: id
+          in: path
+          description: id of task to return
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                deadline_at:
+                  type: string
+                parent_task_id:
+                  type: integer
+                assigned_user_id:
+                  type: integer
+            example:
+              name: Hartmann Group Project No.1
+              description: This is Hartmann Group Project No.1
+              deadline_at: "2020-10-11T08:44:08.705+09:00"
+              parent_task_id: 43
+              assigned_user_id: 32
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - tasks
+                properties:
+                  task:
+                    $ref: '#/components/schemas/task'
+                example:
+                  task:
+                    id: 1
+                    name: "Moore, Upton and Kessler Task No.1"
+                    description: "This is Moore, Upton and Kessler Task No.1"
+                    deadline_at: "2020-10-11T08:44:08.705+09:00"
+                    is_completed: false
+                    parent_task_id: 43
+                    assigned_user_id: 32
+                    created_user_id: 66
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
+    delete:
+      tags:
+        - tasks
+      summary: Delete a task.
+      parameters:
+        - name: id
+          in: path
+          description: id of task to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - tasks
+                properties:
+                  task:
+                    $ref: '#/components/schemas/task'
+                example:
+                  task:
+                    id: 1
+                    name: "Moore, Upton and Kessler Task No.1"
+                    description: "This is Moore, Upton and Kessler Task No.1"
+                    deadline_at: "2020-10-11T08:44:08.705+09:00"
+                    is_completed: false
+                    parent_task_id: 43
+                    assigned_user_id: 32
+                    created_user_id: 66
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
   /teams:
     get:
       tags:
         - teams
       summary: Get all teams.
-      description: Returns an array of Team model
       parameters: []
       responses:
-        '200':
-          description: A JSON array of Team model
+        200:
+          description: OK
           content:
             application/json:
               schema:
@@ -252,18 +676,7 @@ paths:
                   teams:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        name:
-                          type: string
-                        created_user_id:
-                          type: integer
-                        created_at:
-                          type: string
-                        updated_at:
-                          type: string
+                      $ref: '#/components/schemas/team'
               example:
                 teams:
                   -
@@ -278,7 +691,7 @@ paths:
                     created_user_id: 68
                     created_at: "2020-10-05T05:02:03.369+09:00"
                     updated_at: "2020-10-05T05:02:03.369+09:00"
-        '401':
+        401:
           description: Unauthorized
           content:
             application/json:
@@ -287,6 +700,213 @@ paths:
               example:
                 errors:
                   - "Not Authenticated"
+    post:
+      tags:
+        - teams
+      summary: Create a team.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+            example:
+              name: Moore, Upton and Kessler Team No.1
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tasks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/team'
+              example:
+                team:
+                  id: 1
+                  name: "Moore, Upton and Kessler Team No.1"
+                  created_user_id: 66
+                  created_at: "2020-10-05T05:02:03.369+09:00"
+                  updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
+  /teams/{id}:
+    get:
+      tags:
+        - teams
+      summary: Get a team.
+      parameters:
+        - name: id
+          in: path
+          description: id of team to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - teams
+                properties:
+                  team:
+                    $ref: '#/components/schemas/team'
+                example:
+                  team:
+                    id: 1
+                    name: "Moore, Upton and Kessler Team No.1"
+                    created_user_id: 66
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
+    put:
+      tags:
+        - teams
+      summary: Update a team.
+      parameters:
+        - name: id
+          in: path
+          description: id of team to return
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+            example:
+              name: Moore, Upton and Kessler Team No.1
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - teams
+                properties:
+                  team:
+                    $ref: '#/components/schemas/team'
+                example:
+                  team:
+                    id: 1
+                    name: "Moore, Upton and Kessler Team No.1"
+                    created_user_id: 66
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
+    delete:
+      tags:
+        - teams
+      summary: Delete a team.
+      parameters:
+        - name: id
+          in: path
+          description: id of team to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - teams
+                properties:
+                  team:
+                    $ref: '#/components/schemas/team'
+                example:
+                  team:
+                    id: 1
+                    name: "Moore, Upton and Kessler Team No.1"
+                    created_user_id: 66
+                    created_at: "2020-10-05T05:02:03.369+09:00"
+                    updated_at: "2020-10-05T05:02:03.369+09:00"
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/401'
+              example:
+                errors:
+                  - "Not Authenticated"
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/404'
+              example:
+                errors:
+                  - "Not Found"
 components:
   securitySchemes:
     Bearer:
@@ -294,7 +914,89 @@ components:
       scheme: bearer
       description: Credentials or access token for API
   schemas:
+    project:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - is_archived
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        is_archived:
+          type: boolean
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    task:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - deadline_at
+        - is_completed
+        - parent_task_id
+        - assigned_user_id
+        - created_user_id
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        deadline_at:
+          type: string
+        is_completed:
+          type: boolean
+        parent_task_id:
+          type: integer
+        assigned_user_id:
+          type: integer
+        created_user_id:
+          type: integer
+        created_at:
+          type: string
+        updated_at:
+          type: string
+    team:
+      type: object
+      required:
+        - id
+        - name
+        - created_user_id
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        created_user_id:
+          type: integer
+        created_at:
+          type: string
+        updated_at:
+          type: string
     401:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+    404:
       type: object
       properties:
         errors:
