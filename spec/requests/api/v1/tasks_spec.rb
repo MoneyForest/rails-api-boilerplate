@@ -54,9 +54,11 @@ RSpec.describe '/api/v1/tasks', type: :request do
         let(:params) { { name: "task", description: "This is task" } }
 
         it 'returns a 200 response' do
+          expect(Project.count).to eq(0)
           subject
           expect(request.path).to eq api_v1_tasks_path
           expect(response).to have_http_status :ok
+          expect(Project.count).to eq(1)
           expect(Task.find(JSON.parse(response.body)['task']['id'])).to_not be_nil
         end
       end
@@ -67,7 +69,15 @@ RSpec.describe '/api/v1/tasks', type: :request do
         include_context 'with invalid authenticated request headers'
         include_examples 'committer schema check'
 
-        let(:params) { { name: "task", description: "This is task" } }
+        let(:params) {
+          {
+            name: "task",
+            description: "This is task",
+            deadline_at: Time.zone.now,
+            parent_task_id: 1,
+            assigned_user_id: 1
+          }
+        }
 
         it 'returns a 401 response' do
           subject
@@ -142,7 +152,15 @@ RSpec.describe '/api/v1/tasks', type: :request do
         include_examples 'committer schema check'
 
         let(:id) { task.id }
-        let(:params) { { name: "task", description: "This is task", is_archived: true } }
+        let(:params) {
+          {
+              name: "task",
+              description: "This is task",
+              deadline_at: Time.zone.now,
+              parent_task_id: 1,
+              assigned_user_id: 1
+          }
+        }
 
         it 'returns a 200 response' do
           subject
@@ -158,7 +176,15 @@ RSpec.describe '/api/v1/tasks', type: :request do
         include_examples 'committer schema check'
 
         let(:id) { task.id }
-        let(:params) { { name: "task", description: "This is task" } }
+        let(:params) {
+          {
+              name: "task",
+              description: "This is task",
+              deadline_at: Time.zone.now,
+              parent_task_id: 1,
+              assigned_user_id: 1
+          }
+        }
 
         it 'returns a 401 response' do
           subject
@@ -197,9 +223,11 @@ RSpec.describe '/api/v1/tasks', type: :request do
         let(:id) { task.id }
 
         it 'returns a 200 response' do
+          expect(Project.count).to eq(1)
           subject
           expect(request.path).to eq api_v1_task_path(task)
           expect(response).to have_http_status :ok
+          expect(Project.count).to eq(0)
         end
       end
     end
@@ -210,7 +238,6 @@ RSpec.describe '/api/v1/tasks', type: :request do
         include_examples 'committer schema check'
 
         let(:id) { task.id }
-        let(:params) { { name: "task", description: "This is task" } }
 
         it 'returns a 401 response' do
           subject

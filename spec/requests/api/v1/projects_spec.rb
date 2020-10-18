@@ -57,9 +57,11 @@ RSpec.describe '/api/v1/projects', type: :request do
         let(:params) { { name: "Project", description: "This is Project" } }
 
         it 'returns a 200 response' do
+          expect(Project.count).to eq(0)
           subject
           expect(request.path).to eq api_v1_projects_path
           expect(response).to have_http_status :ok
+          expect(Project.count).to eq(1)
           expect(Project.find(JSON.parse(response.body)['project']['id'])).to_not be_nil
         end
       end
@@ -200,9 +202,11 @@ RSpec.describe '/api/v1/projects', type: :request do
         let(:id) { project.id }
 
         it 'returns a 200 response' do
+          expect(Project.count).to eq(1)
           subject
           expect(request.path).to eq api_v1_project_path(project)
           expect(response).to have_http_status :ok
+          expect(Project.count).to eq(0)
         end
       end
     end

@@ -51,12 +51,14 @@ RSpec.describe '/api/v1/teams', type: :request do
       context 'with a team' do
         include_examples 'committer schema check'
 
-        let(:params) { { name: "team", description: "This is team" } }
+        let(:params) { { name: "team" } }
 
         it 'returns a 200 response' do
+          expect(Project.count).to eq(0)
           subject
           expect(request.path).to eq api_v1_teams_path
           expect(response).to have_http_status :ok
+          expect(Project.count).to eq(1)
           expect(Team.find(JSON.parse(response.body)['team']['id'])).to_not be_nil
         end
       end
@@ -67,7 +69,7 @@ RSpec.describe '/api/v1/teams', type: :request do
         include_context 'with invalid authenticated request headers'
         include_examples 'committer schema check'
 
-        let(:params) { { name: "team", description: "This is team" } }
+        let(:params) { { name: "team" } }
 
         it 'returns a 401 response' do
           subject
@@ -142,7 +144,7 @@ RSpec.describe '/api/v1/teams', type: :request do
         include_examples 'committer schema check'
 
         let(:id) { team.id }
-        let(:params) { { name: "team", description: "This is team", is_archived: true } }
+        let(:params) { { name: "team" } }
 
         it 'returns a 200 response' do
           subject
@@ -158,7 +160,7 @@ RSpec.describe '/api/v1/teams', type: :request do
         include_examples 'committer schema check'
 
         let(:id) { team.id }
-        let(:params) { { name: "team", description: "This is team" } }
+        let(:params) { { name: "team" } }
 
         it 'returns a 401 response' do
           subject
@@ -197,9 +199,11 @@ RSpec.describe '/api/v1/teams', type: :request do
         let(:id) { team.id }
 
         it 'returns a 200 response' do
+          expect(Project.count).to eq(1)
           subject
           expect(request.path).to eq api_v1_team_path(team)
           expect(response).to have_http_status :ok
+          expect(Project.count).to eq(0)
         end
       end
     end
@@ -210,7 +214,6 @@ RSpec.describe '/api/v1/teams', type: :request do
         include_examples 'committer schema check'
 
         let(:id) { team.id }
-        let(:params) { { name: "team", description: "This is team" } }
 
         it 'returns a 401 response' do
           subject
