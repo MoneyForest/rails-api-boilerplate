@@ -12,11 +12,15 @@ docker/build-app:
 
 .PHONY: docker/db-setup
 docker/db-setup:
-	docker-compose run app make rails/db-setup
+	docker-compose run backend make rails/db-setup
 
-.PHONY: docker/exec-bash
-docker/exec-bash:
-	docker exec -i -t rails-api-boilerplate_app_1 bash
+.PHONY: docker/exec-backend-bash
+docker/exec-backend-bash:
+	docker exec -i -t rails-api-boilerplate_backend_1 bash
+
+.PHONY: docker/exec-frontend-bash
+docker/exec-frontend-bash:
+	docker exec -i -t rails-api-boilerplate_frontend_1 bash
 
 .PHONY: docker/run-app
 docker/run-app:

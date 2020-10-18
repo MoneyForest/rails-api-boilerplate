@@ -1,6 +1,18 @@
 version: '3'
 services:
-  app:
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    environment:
+      PORT: 8081
+    command: yarn start
+    volumes:
+      - ./frontend:/usr/src/frontend
+    ports:
+      - "8081:8081"
+    stdin_open: true
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,7 +23,7 @@ services:
       TZ: Asia/Tokyo
     command: make rails/run-server
     volumes:
-      - .:/usr/src/rails-api-boilerplate
+      - .:/usr/src/backend
     ports:
       - "8080:8080"
     depends_on:
