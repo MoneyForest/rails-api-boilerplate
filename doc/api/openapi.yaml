@@ -189,8 +189,6 @@ paths:
                           type: string
                         deadline_at:
                           type: string
-                        repeats:
-                          type: string
                         is_completed:
                           type: boolean
                         parent_task_id:
@@ -210,7 +208,6 @@ paths:
                     name: "Moore, Upton and Kessler Task No.1"
                     description: "This is Moore, Upton and Kessler Task No.1"
                     deadline_at: "2020-10-11T08:44:08.705+09:00"
-                    repeats: "per day"
                     is_completed: false
                     parent_task_id: 43
                     assigned_user_id: 32
@@ -222,7 +219,6 @@ paths:
                     name: "Moore, Upton and Kessler Task No.2"
                     description: "This is Moore, Upton and Kessler Task No.2"
                     deadline_at: "2020-10-11T08:44:08.705+09:00"
-                    repeats: "per day"
                     is_completed: false
                     parent_task_id: 20
                     assigned_user_id: 40
