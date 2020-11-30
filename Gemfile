@@ -9,7 +9,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 gem 'jwt'
 gem 'mysql2', '>= 0.4.4'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.1'
 gem 'rack-cors'
 gem 'rails', '~> 6.0.3.4'
 gem 'ridgepole'
